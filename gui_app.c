@@ -4,14 +4,17 @@
 #include "gui_app.h"
 
 
-// --] application state variables
+
 
 SDL_Window*    g_app_window   = NULL;
 SDL_Renderer*  g_app_renderer = NULL;
 SDL_bool       g_quit         = SDL_FALSE;
 
 
-void create_app_window_or_die()
+
+
+void
+create_app_window_or_die()
 {
   if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
@@ -25,7 +28,7 @@ void create_app_window_or_die()
 		     INITIAL_Y,
 		     SCREEN_WIDTH,
 		     SCREEN_HEIGHT,
-		     SDL_WINDOW_SHOWN );
+		     SDL_WINDOW_SHOWN);
 
   if (NULL == g_app_window)
     {
@@ -38,7 +41,8 @@ void create_app_window_or_die()
 
 
 
-void create_app_renderer_or_die()
+void
+create_app_renderer_or_die()
 {
   g_app_renderer =
     SDL_CreateRenderer(g_app_window,
