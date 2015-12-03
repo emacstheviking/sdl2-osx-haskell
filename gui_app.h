@@ -1,0 +1,5 @@
+#define SCREEN_WIDTH  800
+#define SCREEN_HEIGHT 450
+
+#define INITIAL_X 1
+#define INITIAL_Y 1
