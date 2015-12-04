@@ -212,6 +212,9 @@ clean:
 distclean: clean
 	$(RM) $(DEPS) TAGS
 
+run:
+	./$(PROGRAM)
+
 # Show help.
 help:
 	@echo 'Generic Makefile for C/C++ Programs (gcmakefile) version 0.5'
