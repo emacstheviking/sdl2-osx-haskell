@@ -25,11 +25,9 @@ void handle_event(SDL_Event *e)
 	  break;
 
 	case SDL_MOUSEMOTION:
-	  printf("SDL_MOUSEMOTION\n");
 	  break;
 
 	case SDL_KEYUP:
-	  printf("SDL_KEYUP\n");
 	  switch(e->key.keysym.sym)
 	    {
 	    case SDLK_ESCAPE:
