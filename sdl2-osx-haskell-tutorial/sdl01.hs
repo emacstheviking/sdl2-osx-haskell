@@ -10,6 +10,7 @@ import SDL.Video
 -- application state: a down counter and
 data AppState = AppState
     { quitCount   :: Int
+    , quitTrigger :: Int
     , appRunning  :: Bool
     } deriving (Show)
 
@@ -19,7 +20,7 @@ data AppState = AppState
 main = do
     initializeAll
     createWindow "SDL2 with Haskell" defaultWindow
-    let state = AppState 3 True
+    let state = AppState 3 3 True
     runLoop state
     quit
 
@@ -60,18 +61,20 @@ handleEvent s e = do
 -- and set the appRunning flag to False when we reach 1.
 handleKeyboard :: AppState -> KeyboardEventData -> IO AppState
 handleKeyboard s (KeyboardEventData _ Released _ (Keysym _ KeycodeEscape _)) = do
+    print s
     case (quitCount s) of
         1 ->
             return (stopApp s)
         n ->
             return (s { quitCount = (quitCount s)-1 })
 
+handleKeyboard s (KeyboardEventData _ Released _ (Keysym _ _ _)) = do
+    return (s { quitCount = (quitTrigger s)})
 
 -- The catch-all keyboard handler: if no other specialisation before this
 -- process the key this will return the same application state as passed in
 -- to ensure the run loop continues too execute.
-handleKeyboard s e = do
-    return s
+handleKeyboard s e = return s
 
 
 -- Answers a new application state with the stop condition set.
